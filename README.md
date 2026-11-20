@@ -57,7 +57,7 @@ Among the 284 workers who could compare tasks before vs. after AI:
 The share of time-savers is about 40% in every age, degree, and job-type group;
 the differences are small and within the margin of error.
 
-<!-- Figure B (Q2) goes here -->
+![Among AI users at work: 40.5% save time, 40.6% no change, 18.9% slower](figures/fig2_time_saved.png)
 
 ### Q3. Do "AI-exposed" jobs actually use more AI?
 | BLS exposure rating | Low | Moderate | High | Very high |
@@ -69,7 +69,7 @@ Holding job type, degree, age, and demographics equal, very-high-exposure worker
 when uncertain occupation matches are excluded). Covers the 852 workers with a specific
 occupation code, not manual/trades jobs.
 
-<!-- Figure C (Q3) goes here -->
+![AI use at work by BLS exposure rating: 16%, 36%, 45%, 56%](figures/fig3_exposure.png)
 
 ## Methods
 - **Weights and uncertainty:** all estimates use the survey weights; 95% confidence intervals use
