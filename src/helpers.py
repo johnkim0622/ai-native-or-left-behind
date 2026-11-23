@@ -4,6 +4,7 @@ import in notebooks with : from src.helpers import weighted_pct
 """
 
 import pandas as pd
+import numpy as np
 
 
 def weighted_pct(data, col, weight="weight"):
@@ -55,3 +56,20 @@ def table_by(data, group_col, outcome, groups):
     t.loc[t["n"] < 30, "note"] = "not reported (n<30)"
     t.loc[(t["n"] >= 30) & (t["n"] < 50), "note"] = "caution (n 30-50)"
     return t[["pct", "ci_lo", "ci_hi", "n", "note"]]
+
+
+def weighted_ame(model, data, var, ref, levels, weight="weight"):
+    """Survey-weighted average marginal effect, in percentage points, for one
+    categorical variable. Sets everyone to the reference level, predicts, and takes
+    the weighted average; repeats for each other level; returns level -> difference."""
+    w = data[weight]
+    base = data.copy()
+    base[var] = ref
+    p_ref = np.average(model.predict(base), weights=w)
+    out = {}                                   # ← creates the empty results dict
+    for lvl in levels:
+        alt = data.copy()
+        alt[var] = lvl
+        p_lvl = np.average(model.predict(alt), weights=w)
+        out[lvl] = float(100 * (p_lvl - p_ref))
+    return out
